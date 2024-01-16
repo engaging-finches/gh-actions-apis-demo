@@ -37,6 +37,10 @@ jobs:
         env: #creates environment variable for js module
           TOKEN: ${{ secrets.EF_TOKEN }}
 
+      - name: Debug
+        run: |
+          cat scripts/pull_requests.csv
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
