@@ -299,7 +299,7 @@ async function reactToIssue(issueID) {
     const response = await octokit.graphql({
       query: `
     mutation {
-      addReaction(input: {subjectId: "${issueID}", content: HORRAY }) {
+      addReaction(input: {subjectId: "${issueID}", content: HOORAY }) {
         reaction {
           content
         }
