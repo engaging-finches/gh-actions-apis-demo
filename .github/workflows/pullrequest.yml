@@ -1,7 +1,6 @@
 name: Display Pull Request Info
-on: 
-  [workflow_dispatch]
-      
+on: [workflow_dispatch]
+
 jobs:
   #checkout the repo
   #setup node
@@ -30,7 +29,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm install octokit
+        run: npm install
 
       - name: Run script
         run: |
