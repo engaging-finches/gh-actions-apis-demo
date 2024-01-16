@@ -1,0 +1,44 @@
+name: Display Pull Request Info
+on: [workflow_dispatch]
+
+jobs:
+  #checkout the repo
+  #setup node
+  #install dependencies
+  #run module
+  #get csv output from module
+  #upload csv as artifact
+
+  #need to modify the secrets
+  get_pull_request_info:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: read
+    steps:
+      - name: Check out repo content
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }} #gets the current repo
+          ref: ${{ github.ref }} #gets the current branch
+          token: ${{ secrets.EF_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run script
+        run: |
+          node scripts/get-pull-requests.js
+        env:
+          TOKEN: ${{ secrets.EF_TOKEN }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pull_request_info
+          path: scripts/pull_requests.csv
