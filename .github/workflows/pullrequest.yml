@@ -21,7 +21,7 @@ jobs:
         with:
           repository: ${{ github.repository }} #gets the current repo
           ref: ${{ github.ref }} #gets the current branch
-          token: ${{ secrets.EF_TOKEN }}
+          token: ${{ secrets.ORG_EF_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -36,7 +36,7 @@ jobs:
         run: |
           node scripts/GraphQLmod.mjs
         env:
-          TOKEN: ${{ secrets.EF_TOKEN }}
+          TOKEN: ${{ secrets.ORG_EF_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
