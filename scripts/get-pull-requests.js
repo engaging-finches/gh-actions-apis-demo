@@ -5,12 +5,17 @@ import { promises as fsPromises } from 'fs';
 const owner = 'engaging-finches';
 const repository = 'gh-actions-apis-demo';
 
+let csvData;
+
 getAllPullRequests(owner, repository)
   .then((pullRequests) => {
-    console.log('Pull Requests:', pullRequests);
+    // console.log('Pull Requests:', pullRequests);
     const flattened = flatten(pullRequests);
-    const csvData = toCsv(flattened);
+    csvData = toCsv(flattened);
     console.log(csvData);
+
+    // write csv data to file
+    return fsPromises.writeFile('pull_requests.csv', csvData, 'utf8');
   })
   .catch((error) => {
     console.error('Error:', error.message);
