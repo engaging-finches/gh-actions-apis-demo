@@ -234,7 +234,7 @@ async function createPullRequest(owner, repo, title, headBranch, baseBranch, bod
         query: `
           query($owner: String!, $repo: String!) {
             repository(owner: $owner, name: $repo) {
-              pullRequests(states: [OPEN, CLOSED], first: 100) {
+              pullRequests(states: [OPEN, CLOSED, MERGED], first: 100) {
                 nodes {
                   number
                   title
@@ -262,19 +262,17 @@ async function createPullRequest(owner, repo, title, headBranch, baseBranch, bod
     }
   }
   
-  // Example usage
-  
-  
-const repo_owner = 'meher-liatrio';
-const repo_name = 'APIs';
-const repo_description = 'this repo is being created with the GraphQL API';
-const issue_title = 'this is a new issue';
-const issue_body = 'this issue is being created with the GraphQL API';
-const pull_title = 'Bleeding edge feature with graphql!';
-const head_branch = 'test-branch';
-const base_branch = 'main';
-const pull_body = 'Please pull this awesome new feature';
-const project_name="GraphQL project"
+// Example usage
+// const repo_owner = 'meher-liatrio';
+// const repo_name = 'APIs';
+// const repo_description = 'this repo is being created with the GraphQL API';
+// const issue_title = 'this is a new issue';
+// const issue_body = 'this issue is being created with the GraphQL API';
+// const pull_title = 'Bleeding edge feature with graphql!';
+// const head_branch = 'test-branch';
+// const base_branch = 'main';
+// const pull_body = 'Please pull this awesome new feature';
+// const project_name="GraphQL project"
 
 // createRepository(repo_owner, repo_name, repo_description);
 // Add other GraphQL calls for creating issues, pull requests, etc.
@@ -287,8 +285,8 @@ const project_name="GraphQL project"
 // makeProject(repo_owner,repo_name,project_name);
 // getRepositoryInfo(repo_owner, repo_name);
 
-const owner = 'engaged-finches';
-  const repository = 'gh-actions-apis-demo';
+const owner = 'engaging-finches';
+const repository = 'gh-actions-apis-demo';
   
   getAllPullRequests(owner, repository)
     .then((pullRequests) => {
