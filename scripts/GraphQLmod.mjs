@@ -9,7 +9,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const octokit = new Octokit({
-  auth: process.env.EF_TOKEN,
+  auth: process.env.TOKEN,
 });
 
 async function getRepositoryInfo(owner, repo) {
