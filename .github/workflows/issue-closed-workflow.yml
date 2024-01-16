@@ -28,6 +28,6 @@ jobs:
 
       - name: Run script
         run: |
-          node scripts/react-to-issue.js ${{ github.event.issue.number }}
+          node scripts/react-to-issue.js ${{ github.event.issue.id }}
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}
