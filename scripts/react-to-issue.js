@@ -1,6 +1,6 @@
 import { reactToIssue } from './GraphQLmod.mjs';
-const { argv, argv0 } = require('node:process');
+import process from 'process';
 
-const issueID = process.argv0;
+const issueID = process.argv[2];
 
 reactToIssue(issueID);
