@@ -34,7 +34,7 @@ jobs:
 
       - name: Run script
         run: |
-          node .github/actions-scripts/use-the-api.mjs
+          node scripts/GraphQLmod.mjs
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}
 
