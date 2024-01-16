@@ -1,0 +1,33 @@
+name: Issue Closed Action
+
+#on:
+#issues:
+# types: [closed]
+on: [workflow_dispatch]
+jobs:
+  thank_you_comment:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Check out repo content
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }} #gets the current repo
+          ref: ${{ github.ref }} #gets the current branch
+          token: ${{ secrets.EF_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run script
+        run: |
+          node scripts/react-to-issue.js ${{ github.event.issue.number }}
+        env:
+          TOKEN: ${{ secrets.EF_TOKEN }}
