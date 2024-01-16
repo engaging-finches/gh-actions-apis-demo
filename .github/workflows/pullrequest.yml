@@ -34,7 +34,7 @@ jobs:
 
       - name: Run script
         run: |
-          node scripts/GraphQLmod.mjs
+          node scripts/get-pull-requests.js
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}
 
@@ -42,4 +42,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: pull_request_info
-          path: pull_request_info.csv
+          path: scripts/pull_requests.csv
