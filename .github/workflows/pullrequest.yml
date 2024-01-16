@@ -42,3 +42,9 @@ jobs:
         with:
           name: pull_request_info
           path: scripts/pull_requests.csv
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: pull_request_info
+          path: scripts/pull_requests.csv
