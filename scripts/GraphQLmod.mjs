@@ -201,7 +201,7 @@ async function createPullRequest(
 async function makeProject(owner, repo, projectName) {
   const mutation = `
       mutation CreateProject(
-        $owner: ID!, 
+        $owner: ID!,
         $projectName: String!
       ) {
         createProject(input: {
@@ -267,7 +267,58 @@ async function getAllPullRequests(owner, repo) {
   }
 }
 
+async function addIssueComment(repoID, issueID, title, body) {
+  try {
+    const response = await octokit.graphql({
+      query: `
+    mutation {
+      updateIssue(input: {
+        repositoryId:"${repoID}",
+        issueID: "${issueID}",
+        title: "${title}",
+        body: "${body}"
+      }) {
+        issue {
+          number
+          title
+          body
+        }
+      }
+    }
+  `,
+    });
+    // return response.repository.pullRequests.nodes;
+  } catch (error) {
+    console.error('Error commenting on issue', error.message);
+    throw error;
+  }
+}
+
+async function reactToIssue(issueID) {
+  try {
+    const response = await octokit.graphql({
+      query: `
+    mutation {
+      addReaction(input: {subjectId: "${issueID}", content: HORRAY }) {
+        reaction {
+          content
+        }
+        subject {
+          id
+        }
+      }
+    }
+  `,
+    });
+    // return response.repository.pullRequests.nodes;
+  } catch (error) {
+    console.error('Error reacting on issue', error.message);
+    throw error;
+  }
+}
+
 export { getAllPullRequests };
+export { reactToIssue };
 
 // Example usage
 // const repo_owner = 'meher-liatrio';
