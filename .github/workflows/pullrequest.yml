@@ -33,8 +33,8 @@ jobs:
 
       - name: Run script
         run: |
-          node scripts/get-pull-requests.js
-        env:
+          echo $(node scripts/get-pull-requests.js) > scripts/pull_requests.csv
+        env: #creates environment variable for js module
           TOKEN: ${{ secrets.EF_TOKEN }}
 
       - name: Upload artifact
