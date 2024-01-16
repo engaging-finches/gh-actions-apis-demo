@@ -1,6 +1,6 @@
 name: Display Pull Request Info
 on: 
-  [push, pull_request, workflow_dispatch]
+  [workflow_dispatch]
       
 jobs:
   #checkout the repo
