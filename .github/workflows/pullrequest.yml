@@ -10,8 +10,8 @@ jobs:
       - name: Check out repo content
         uses: actions/checkout@v4
         with:
-          repository: ${{ github.repository }} #gets the current repo
-          ref: ${{ github.ref }} #gets the current branch
+          repository: ${{ github.repository }}
+          ref: ${{ github.ref }}
           token: ${{ secrets.EF_TOKEN2 }}
 
       - name: Setup Node
@@ -54,18 +54,17 @@ jobs:
         with:
           name: pull_request_info
 
+      - name: Add CSV contents to env variable
+        run: |
+          CSV=$(cat scripts/pull_requests.csv)
+          echo "CSV=${CSV}" >> "$GITHUB_ENV"
+
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           repository: engaging-finches/demo-pr-data
           ref: main
           token: ${{ secrets.PAT }}
-
-      - name: Add CSV contents to env variable
-        shell: bash
-        run: |
-          CSV=$(cat pull_requests.csv)
-          echo "CSV=${CSV}" >> "$GITHUB_ENV"
 
       - name: Set Upstream Branch
         run: |
