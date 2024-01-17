@@ -4,6 +4,10 @@ on:
   issues:
     types: [closed]
 #on: [workflow_dispatch]
+#on:
+#push:
+#branches:
+# - 'gnmeyer-patch'
 jobs:
   thank_you_comment:
     runs-on: ubuntu-latest
@@ -28,6 +32,6 @@ jobs:
 
       - name: Run script
         run: |
-          node scripts/react-to-issue.js ${{ github.repository_owner }} ${{ github.repository }} ${{ github.event.issue.id }} HOORAY
+          node scripts/react-to-issue.js ${{ github.repository }} ${{ github.event.issue.number }} HOORAY
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}
