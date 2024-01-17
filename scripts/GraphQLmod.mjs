@@ -416,7 +416,7 @@ async function assignToIssue(issueID, assignee) {
       query: `
         mutation {
           updateIssue(input: {
-            id: ${issueID},
+            id: "${issueID}",
             assigneeIds: ["${assignee}"],
           }) {
             issue {
