@@ -397,24 +397,26 @@ async function assignToIssue(repoID, issueID, assignee) {
   try {
     const response = await octokit.graphql({
       query: `
-      mutation {
-        updateIssue(input: {
-          repositoryId:"${repoID}",
-          issueID: "${issueID}",
-          assigneeIds: "[${assignee}]",
-
-        }) {
-          issue {
-            number
-            title
-            assignees(first: 10) {
-              nodes {
-                login
+        mutation {
+          updateIssue(input: {
+            id: "${issueID}",
+            assigneeIds: [${assignee.map((a) => `"${a}"`).join(',')}]
+          }) {
+            issue {
+              number
+              title
+              assignees(first: 10) {
+                nodes {
+                  login
+                }
               }
             }
-      }
-  `,
+          }
+        }
+      `,
     });
+
+    return response;
   } catch (error) {
     console.error('Error adding assignee to issue', error.message);
     throw error;
