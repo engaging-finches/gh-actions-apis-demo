@@ -7,7 +7,7 @@ name: Issue Closed Action
 on:
   push:
     branches:
-      - 'gnmeyer-patch'
+      - 'feature/*'
 jobs:
   thank_you_comment:
     runs-on: ubuntu-latest
@@ -32,6 +32,6 @@ jobs:
 
       - name: Run script
         run: |
-          node scripts/react-to-issue.js ${{ github.repository_owner }} ${{ github.repository }} 72 HOORAY
+          node scripts/react-to-issue.js ${{ github.repository_owner }} ${{ github.repository }} ${{ github.event.issue.number }} HOORAY
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}
