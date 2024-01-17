@@ -400,7 +400,7 @@ async function assignToIssue(repoID, issueID, assignee) {
         mutation {
           updateIssue(input: {
             id: "${issueID}",
-            assigneeIds: "[${assignee}]"
+            assigneeIds: ["${assignee}"],
           }) {
             issue {
               number
