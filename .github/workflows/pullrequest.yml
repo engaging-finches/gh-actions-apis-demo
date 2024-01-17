@@ -81,7 +81,7 @@ jobs:
           git config --global user.email "${{ secrets.USER_EMAIL }}"
 
           # Modify the existing file or replace it with the updated content
-          printf '%s\n' "$CSV" > README.md
+          printf '%s\n' "$CSV_CONTENTS" > README.md
 
           # Add, commit, and push the changes to the repository
           git add README.md
