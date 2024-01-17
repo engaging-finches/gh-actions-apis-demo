@@ -19,15 +19,13 @@ const verified_users = [
   'SloaneTribble',
 ];
 
-console.log(`main: ${editing_user}`);
-
 const owner_repo = process.argv[2];
 const split = owner_repo.split('/');
 const owner = split[0];
 const repo = split[1];
 
 const issue_num = process.argv[3];
-const issue_body = process.argv[4];
+const repo_id = process.argv[4];
 const issue_title = process.argv[5];
 
 /* regular expression to find assignees */
@@ -41,6 +39,7 @@ const extracted = matches
 
 const title_without_assignees = issue_title.replace(assign_regex, '').trim();
 
+console.log(`main: ${editing_user}`);
 async function main() {
   try {
     if (!verified_users.includes(editing_user)) {
@@ -56,9 +55,8 @@ async function main() {
     if (extracted.length > 0) {
       changeIssueTitle(issue_id, title_without_assignees);
     }
-    issue_body +=
-      '\n' + editing_user + ' added ' + extracted[0] + ' to assignees.';
-    changeIssueBody(issue_id, issue_body);
+
+    changeIssueBody(issue_id, 'run by graphql api');
   } catch (error) {
     console.error('Error:', error.message);
   }
