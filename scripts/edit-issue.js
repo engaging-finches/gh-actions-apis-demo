@@ -32,9 +32,10 @@ async function main() {
   try {
     const issue_id = await getIssueID(owner, repo, issue_num);
 
-    for (let i = 0; i < extracted.length; i++) {
-      assignToIssue(repo_id, issue_id, extracted[i]);
-    }
+    // for (let i = 0; i < extracted.length; i++) {
+    //   assignToIssue(repo_id, issue_id, extracted[i]);
+    // }
+    assignToIssue(repo_id, issue_id, extracted);
     if (extracted.length > 0) {
       changeIssueTitle(repo_id, issue_id, title_without_assignees);
     }
