@@ -14,6 +14,10 @@ const issue_num = process.argv[3];
 const repo_id = process.argv[4];
 const issue_title = process.argv[5];
 
+if (issue_title.length > 10) {
+  return;
+}
+
 /* regular expression to find assignees */
 const assign_regex = /\+a\{(.*?)\}/g;
 /* find matches */
@@ -25,18 +29,13 @@ const extracted = matches
 
 const title_without_assignees = issue_title.replace(assign_regex, '').trim();
 
-console.log(extracted);
-console.log(title_without_assignees);
-
 console.log(`main: ${owner}, ${repo}, ${issue_num}`);
 async function main() {
   try {
     const issue_id = await getIssueID(owner, repo, issue_num);
 
     for (let i = 0; i < extracted.length; i++) {
-      console.log(`id: ${extracted[i]}`);
       const user_id = await getUserId(extracted[i]);
-      console.log(`userid: ${user_id}`);
       assignToIssue(issue_id, user_id);
     }
     if (extracted.length > 0) {
