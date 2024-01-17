@@ -369,14 +369,13 @@ async function editIssue(repoID, issueID, title, body) {
   }
 }
 
-async function changeIssueTitle(repoID, issueID, title) {
+async function changeIssueTitle(issueID, title) {
   try {
     const response = await octokit.graphql({
       query: `
       mutation {
         updateIssue(input: {
-          repositoryId:"${repoID}",
-          issueID: "${issueID}",
+          id: "${issueID}",
           title: "${title}"
         }) {
           issue {
