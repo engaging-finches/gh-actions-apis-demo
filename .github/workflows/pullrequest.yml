@@ -62,18 +62,18 @@ jobs:
         with:
           repository: engaging-finches/demo-pr-data
           ref: main
+          token: ${{ secrets.PAT }}
 
       - name: Set Upstream Branch
         run: |
           git pull
-          git branch -u origin/main
           git checkout main
 
       - name: Update Existing File
         run: |
           # Set up Git configuration 
-          # git config --global user.name "${{ secrets.USER_NAME }}"
-          # git config --global user.email "${{ secrets.USER_EMAIL }}"
+          git config --global user.name "${{ secrets.USER_NAME }}"
+          git config --global user.email "${{ secrets.USER_EMAIL }}"
 
           # Modify the existing file or replace it with the updated content
           echo "Hello from actions!" > README.md
