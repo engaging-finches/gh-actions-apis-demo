@@ -35,12 +35,12 @@ const title_without_assignees = issue_title.replace(assign_regex, '').trim();
 console.log(`main: ${owner}, ${repo}, ${issue_num}`);
 async function main() {
   try {
-    if (editing_user > 10) {
+    if (editing_user > 39) {
       throw new Error('Username too long!');
     }
 
     // const editor_id = await getUserId(editing_user);
-    const val = await isUserInRepoOrganization(editing_user);
+    const val = await isUserInRepoOrganization('gnmeyer');
 
     if (!val) {
       throw new Error('user not in org');
