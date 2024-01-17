@@ -52,3 +52,24 @@ jobs:
         with:
           name: pull_request_info
           path: scripts/pull_requests2.csv
+
+  update-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Update Existing File
+        run: |
+          # Set up Git configuration (you may need to configure user.name and user.email)
+          git config --global user.name "${{ secrets.NAME }}"
+          git config --global user.email "${{ secrets.EMAIL }}"
+
+          # Modify the existing file or replace it with the updated content
+          # Example: echo "Hello from actions!" > README.md
+
+          # Add, commit, and push the changes to the repository
+          git add README.md
+          git commit -m "Update README"
+          git push --force https://engaging-finches:${{ secrets.PAT }}@github.com/engaging-finches/demo-pr-data.git main
