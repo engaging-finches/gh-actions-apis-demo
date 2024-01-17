@@ -1,7 +1,7 @@
 import { assignToIssue } from './GraphQLmod.mjs';
 import { changeIssueTitle } from './GraphQLmod.mjs';
 import { getIssueID } from './GraphQLmod.mjs';
-import { getUserId } from './GraphQLmod.mjs';
+import { getUserId, changeIssueBody } from './GraphQLmod.mjs';
 
 import process from 'process';
 
@@ -42,6 +42,8 @@ async function main() {
     if (extracted.length > 0) {
       changeIssueTitle(issue_id, title_without_assignees);
     }
+
+    changeIssueBody(issue_id, 'run by graphql api');
   } catch (error) {
     console.error('Error:', error.message);
   }
