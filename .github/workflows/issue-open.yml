@@ -7,9 +7,6 @@ on:
 #on:
 #push:
 #branches: 'gnmeyer-patch'
-
-#on: [workflow_dispatch]
-
 jobs:
   edit_issue_title_and_assignees:
     runs-on: ubuntu-latest
@@ -34,8 +31,6 @@ jobs:
 
       - name: Run script
         run: |
-          node scripts/edit-issue ${{ github.repository }} ${{ github.events.issue.number }} ${{ github.event.issue.user.login }} "${{ github.event.issue.title }}"
-        #run: |
-        #node scripts/edit-issue ${{ github.repository }} 72 gnmeyer "ISSUE GRAPHQL TOOL +a{meher-liatrio}"
+          node scripts/edit-issue ${{ github.repository }} ${{ github.events.issue.number }} ${{ secrets.REPO_ID }} "${{ github.event.issue.title }}" ${{ github.event.issue.user.login }}
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}

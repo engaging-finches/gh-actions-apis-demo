@@ -10,6 +10,8 @@ import {
 
 import process from 'process';
 
+const editing_user = process.argv[6];
+
 const verified_users = [
   'gnmeyer',
   'meher-liatrio',
@@ -23,7 +25,7 @@ const owner = split[0];
 const repo = split[1];
 
 const issue_num = process.argv[3];
-const editing_user = process.argv[4];
+const repo_id = process.argv[4];
 const issue_title = process.argv[5];
 
 /* regular expression to find assignees */
