@@ -435,12 +435,12 @@ async function getUserId(assignee) {
 async function isUserInRepoOrganization(owner, userID, repoID) {
   try {
     console.log(`with user id: ${userID}`);
-    // Fetch repository information including the owner
+    // Fetch organization members
     const response = await octokit.graphql({
       query: `
-        query($orgLogin: String!, $userID: String!) {
+        query($orgLogin: String!) {
           organization(login: $orgLogin) {
-            membersWithRole(query: $userID, first: 1) {
+            membersWithRole(first: 100) {  // Adjust 'first' as needed
               nodes {
                 login
               }
@@ -450,10 +450,10 @@ async function isUserInRepoOrganization(owner, userID, repoID) {
       `,
       variables: {
         orgLogin: owner,
-        userID: userID,
       },
     });
 
+    // Check if the user is in the members list
     return response.organization.membersWithRole.nodes.some(
       (member) => member.login === userID
     );
