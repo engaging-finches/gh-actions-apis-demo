@@ -54,6 +54,11 @@ jobs:
         with:
           name: pull_request_info
 
+      - name: Debug
+        run: |
+          # Print the contents of the working directory
+          ls -R
+
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
