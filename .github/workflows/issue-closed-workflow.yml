@@ -3,7 +3,11 @@ name: Issue Closed Action
 #on:
 #issues:
 # types: [closed]
-on: [workflow_dispatch]
+#on: [workflow_dispatch]
+on:
+  push:
+    branches:
+      - 'gnmeyer-patch'
 jobs:
   thank_you_comment:
     runs-on: ubuntu-latest
