@@ -440,7 +440,7 @@ async function isUserInRepoOrganization(owner, userID) {
     const response = await octokit.graphql({
       query: `
         query {
-          organization(login: ${owner}) {
+          organization(login: "${owner}") {
             membersWithRole(first: 100) {
               nodes {
                 login
