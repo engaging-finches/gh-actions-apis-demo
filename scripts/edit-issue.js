@@ -34,6 +34,7 @@ async function main() {
     const issue_id = await getIssueID(owner, repo, issue_num);
 
     for (let i = 0; i < extracted.length; i++) {
+      console.log(`id: ${extracted[i]}`);
       const user_id = await getUserId(extracted[i]);
       assignToIssue(repo_id, issue_id, user_id);
     }
