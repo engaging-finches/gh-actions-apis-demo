@@ -17,8 +17,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          cache: npm
+          node-version: '18' #necessary version for graphql
+          cache: npm #caches dependencies
 
       - name: Install dependencies
         run: npm install
@@ -43,4 +43,4 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: pull_request_info
-          path: scripts/pull_requests2.csv
+          path: scripts/pull_requests_info.csv
