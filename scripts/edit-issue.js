@@ -39,7 +39,7 @@ async function main() {
       return error;
     }
 
-    editor_id = await getUserId(editing_user);
+    const editor_id = await getUserId(editing_user);
     const val = await isUserInRepoOrganization(editor_id);
 
     if (!val) {
