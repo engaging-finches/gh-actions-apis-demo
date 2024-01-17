@@ -54,17 +54,18 @@ jobs:
         with:
           name: pull_request_info
 
-      - name: Debug
-        run: |
-          # Print the contents of the working directory
-          ls -R
-
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           repository: engaging-finches/demo-pr-data
           ref: main
           token: ${{ secrets.PAT }}
+
+      - name: Add CSV contents to env variable
+        shell: bash
+        run: |
+          CSV=$(cat pull_requests.csv)
+          echo "CSV=${CSV}" >> "$GITHUB_ENV"
 
       - name: Set Upstream Branch
         run: |
@@ -78,7 +79,7 @@ jobs:
           git config --global user.email "${{ secrets.USER_EMAIL }}"
 
           # Modify the existing file or replace it with the updated content
-          cat pull_requests_info.csv > README.md
+          printf '%s\n' "$CSV" > README.md
 
           # Add, commit, and push the changes to the repository
           git add README.md
