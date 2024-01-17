@@ -1,4 +1,4 @@
-import { assignToIssue, getUserId } from './GraphQLmod.mjs';
+import { assignToIssue } from './GraphQLmod.mjs';
 import { changeIssueTitle } from './GraphQLmod.mjs';
 import { getIssueID } from './GraphQLmod.mjs';
 import { getUserId } from './GraphQLmod.mjs';
