@@ -84,4 +84,4 @@ jobs:
           # Add, commit, and push the changes to the repository
           git add README.md
           git commit -m "Update README"
-          git push https://engaging-finches:${{ secrets.PAT }}@github.com/engaging-finches/demo-pr-data.git main
+          git push https://engaging-finches@github.com/engaging-finches/demo-pr-data.git main
