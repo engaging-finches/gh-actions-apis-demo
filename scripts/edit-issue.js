@@ -35,7 +35,7 @@ async function main() {
     // for (let i = 0; i < extracted.length; i++) {
     //   assignToIssue(repo_id, issue_id, extracted[i]);
     // }
-    assignToIssue(repo_id, issue_id, extracted);
+    assignToIssue(issue_id, extracted);
     if (extracted.length > 0) {
       changeIssueTitle(repo_id, issue_id, title_without_assignees);
     }

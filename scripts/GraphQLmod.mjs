@@ -397,7 +397,7 @@ async function assignToIssue(repoID, issueID, assignees) {
   try {
     const response = await octokit.graphql({
       query: `
-    mutation UpdateIssue($repoID: ID!, $issueID: ID!, $assignees: [ID!]!) {
+    mutation UpdateIssue($issueID: ID!, $assignees: [ID!]!) {
       updateIssue(input: {
         id: $issueID,
         assigneeIds: $assignees
