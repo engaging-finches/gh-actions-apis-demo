@@ -7,7 +7,7 @@ name: Issue Closed Action
 on:
   push:
     branches:
-      - 'feature/*'
+      - 'gnmeyer-patch'
 jobs:
   thank_you_comment:
     runs-on: ubuntu-latest
