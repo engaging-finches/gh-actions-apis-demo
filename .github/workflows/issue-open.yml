@@ -1,11 +1,11 @@
 name: Issue Open Action
 
-#on:
-#issues:
-#types: [closed]
 on:
-  push:
-    branches: 'gnmeyer-patch'
+  issues:
+    types: [opened, edited]
+#on:
+#push:
+#branches: 'gnmeyer-patch'
 jobs:
   edit_issue_title_and_assignees:
     runs-on: ubuntu-latest
