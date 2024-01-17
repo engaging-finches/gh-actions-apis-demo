@@ -392,6 +392,29 @@ async function changeIssueTitle(issueID, title) {
   }
 }
 
+async function changeIssueBody(issueID, body) {
+  try {
+    const response = await octokit.graphql({
+      query: `
+      mutation {
+        updateIssue(input: {
+          id: "${issueID}",
+          body: "${body}"
+        }) {
+          issue {
+            number
+            body
+          }
+        }
+      }
+  `,
+    });
+  } catch (error) {
+    console.error('Error changing issue title', error.message);
+    throw error;
+  }
+}
+
 async function getUserId(assignee) {
   try {
     const response = await octokit.graphql({
@@ -452,6 +475,7 @@ export { editIssue };
 export { changeIssueTitle };
 export { assignToIssue };
 export { getUserId };
+export { changeIssueBody };
 /* ------------- */
 
 // Example usage
