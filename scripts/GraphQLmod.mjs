@@ -403,7 +403,7 @@ async function getUserId(assignee) {
       }
       `,
     });
-    return response;
+    return response.user.id;
   } catch (error) {
     console.error('error getting user ID', error.message);
     throw error;
