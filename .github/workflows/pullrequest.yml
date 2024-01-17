@@ -78,6 +78,9 @@ jobs:
           # Modify the existing file or replace it with the updated content
           echo "Hello from actions!" > README.md
 
+          # Print the remote URL
+          git remote -v
+
           # Add, commit, and push the changes to the repository
           git add README.md
           git commit -m "Update README"
