@@ -16,7 +16,7 @@ const verified_users = [
   'gnmeyer',
   'meher-liatrio',
   'myles-coleman',
-  'sloanetribble',
+  'SloaneTribble',
 ];
 
 const owner_repo = process.argv[2];
@@ -39,7 +39,7 @@ const extracted = matches
 
 const title_without_assignees = issue_title.replace(assign_regex, '').trim();
 
-console.log(`main: ${owner}, ${repo}, ${issue_num}`);
+console.log(`main: ${editing_user}`);
 async function main() {
   try {
     // if (editing_user > 39) {

@@ -312,7 +312,6 @@ async function getIssueID(owner, repo, issueNum) {
         }
       `,
     });
-    console.log(`ID: ${response.repository.issue.id}`);
     return response.repository.issue.id;
   } catch (error) {
     console.error('Error getting issue ID', error.message);
@@ -434,8 +433,6 @@ async function getUserId(assignee) {
 
 async function isUserInRepoOrganization(owner, userID) {
   try {
-    console.log(`with owner id: ${owner}`);
-    console.log(`with user id: ${userID}`);
     // Fetch organization members
     const response = await octokit.graphql({
       query: `

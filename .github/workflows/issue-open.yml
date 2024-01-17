@@ -4,9 +4,9 @@ on:
   issues:
     types: [opened, edited]
 
-#    on:
+#on:
 #push:
-# branches: 'gnmeyer-patch'
+#branches: 'gnmeyer-patch'
 jobs:
   edit_issue_title_and_assignees:
     runs-on: ubuntu-latest
