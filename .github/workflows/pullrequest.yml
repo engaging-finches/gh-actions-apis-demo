@@ -7,15 +7,12 @@ jobs:
     permissions:
       issues: read
     steps:
-      - name: Fetch Pull Request Refs
-        run: git fetch origin +refs/pull/${{ github.event.number }}/merge
-
       - name: Check out repo content
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository }} #gets the current repo
           ref: ${{ github.ref }} #gets the current branch
-          token: ${{ secrets.EF_TOKEN }}
+          token: ${{ secrets.EF_TOKEN2 }}
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -30,7 +27,7 @@ jobs:
         run: |
           echo "$(node scripts/get-pull-requests.js)" > scripts/pull_requests.csv
         env: #creates environment variable for js module
-          TOKEN: ${{ secrets.EF_TOKEN }}
+          TOKEN: ${{ secrets.EF_TOKEN2 }}
 
       - name: Debug
         run: |
