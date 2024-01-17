@@ -294,12 +294,30 @@ async function addIssueComment(repoID, issueID, title, body) {
   }
 }
 
-async function reactToIssue(issueID) {
+async function getIssueID(owner, repo, issueNum) {
+  try {
+    const response = await octokit.graphql({
+      query: `
+        repository(owner: "${owner}", name: "${repo}") {
+          issue(number: ${issueNum}) {
+          id
+        }
+      }
+  `,
+    });
+    return response.repository.issue.id;
+  } catch (error) {
+    console.error('Error reacting on issue', error.message);
+    throw error;
+  }
+}
+
+async function reactToIssue(issueID, reaction) {
   try {
     const response = await octokit.graphql({
       query: `
     mutation {
-      addReaction(input: {subjectId: "${issueID}", content: HOORAY }) {
+      addReaction(input: {subjectId: "${issueID}", content: ${reaction} }) {
         reaction {
           content
         }
@@ -319,6 +337,7 @@ async function reactToIssue(issueID) {
 
 export { getAllPullRequests };
 export { reactToIssue };
+export { getIssueID };
 
 // Example usage
 // const repo_owner = 'meher-liatrio';
