@@ -432,59 +432,29 @@ async function getUserId(assignee) {
   }
 }
 
-async function isUserInRepoOrganization(userID, repoID) {
+async function isUserInRepoOrganization(owner, userID, repoID) {
   try {
     console.log(`with user id: ${userID}`);
     // Fetch repository information including the owner
-    const repoResponse = await octokit.graphql({
+    const response = await octokit.graphql({
       query: `
-        query($repoID: ID!) {
-          node(id: $repoID) {
-            ... on Repository {
-              owner {
-                __typename
-                ... on Organization {
-                  login
-                }
+        query($orgLogin: String!) {
+          organization(
+            login: "${owner}",
+            ) {
+            membersWithRole(query: ${userID}, first: 1) {
+              nodes {
+                login
               }
             }
           }
         }
       `,
-      variables: { repoID },
     });
 
-    const owner = repoResponse.node.owner;
-
-    // Check if the repository owner is an organization
-    if (owner.__typename === 'Organization') {
-      // Fetch organization members and check if the user is a member
-      const orgMembersResponse = await octokit.graphql({
-        query: `
-          query($orgLogin: String!) {
-            organization(login: $orgLogin) {
-              membersWithRole(query: $userID, first: 1) {
-                nodes {
-                  login
-                }
-              }
-            }
-          }
-        `,
-        variables: {
-          orgLogin: owner.login,
-          userID,
-        },
-      });
-
-      // Check if the user is found in the organization members
-      return orgMembersResponse.organization.membersWithRole.nodes.some(
-        (member) => member.login === userID
-      );
-    }
-
-    // If the owner is not an organization, return false
-    return false;
+    return response.organization.membersWithRole.nodes.some(
+      (member) => member.login === userID
+    );
   } catch (error) {
     console.error(
       'Error checking user in repository organization',

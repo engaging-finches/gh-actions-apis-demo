@@ -39,8 +39,8 @@ async function main() {
       throw new Error('Username too long!');
     }
 
-    const editor_id = await getUserId(editing_user);
-    const val = await isUserInRepoOrganization(editor_id);
+    // const editor_id = await getUserId(editing_user);
+    const val = await isUserInRepoOrganization(editing_user);
 
     if (!val) {
       throw new Error('user not in org');
