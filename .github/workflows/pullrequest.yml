@@ -2,14 +2,6 @@ name: Display Pull Request Info
 on: [workflow_dispatch, pull_request]
 
 jobs:
-  #checkout the repo
-  #setup node
-  #install dependencies
-  #run module
-  #get csv output from module
-  #upload csv as artifact
-
-  #need to modify the secrets
   get_pull_request_info:
     runs-on: ubuntu-latest
     permissions:
@@ -20,7 +12,7 @@ jobs:
         with:
           repository: ${{ github.repository }} #gets the current repo
           ref: ${{ github.ref }} #gets the current branch
-          token: ${{ secrets.EF_TOKEN }}
+          token: ${{ secrets.EF_TOKEN2 }}
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -35,7 +27,7 @@ jobs:
         run: |
           echo "$(node scripts/get-pull-requests.js)" > scripts/pull_requests.csv
         env: #creates environment variable for js module
-          TOKEN: ${{ secrets.EF_TOKEN }}
+          TOKEN: ${{ secrets.EF_TOKEN2 }}
 
       - name: Debug
         run: |
