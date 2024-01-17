@@ -30,6 +30,6 @@ jobs:
 
       - name: Run script
         run: |
-          node scripts/edit-issue ${{ github.repository }} 72 ${{ secrets.REPO_ID }} newtitle+a{gnmeyer}
+          node scripts/edit-issue ${{ github.repository }} 72 ${{ secrets.REPO_ID }} newtitle+a{meher-liatrio}
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}
