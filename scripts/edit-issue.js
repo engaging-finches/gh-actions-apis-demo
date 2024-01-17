@@ -10,8 +10,6 @@ import {
 
 import process from 'process';
 
-const editing_user = process.argv[6];
-
 const verified_users = [
   'gnmeyer',
   'meher-liatrio',
@@ -25,7 +23,7 @@ const owner = split[0];
 const repo = split[1];
 
 const issue_num = process.argv[3];
-const repo_id = process.argv[4];
+const editing_user = process.argv[4];
 const issue_title = process.argv[5];
 
 /* regular expression to find assignees */
@@ -42,17 +40,6 @@ const title_without_assignees = issue_title.replace(assign_regex, '').trim();
 console.log(`main: ${editing_user}`);
 async function main() {
   try {
-    // if (editing_user > 39) {
-    //   throw new Error('Username too long!');
-    // }
-
-    // // const editor_id = await getUserId(editing_user);
-    // const val = await isUserInRepoOrganization('engaging_finches', 'gnmeyer');
-
-    // if (!val) {
-    //   throw new Error('user not in org');
-    // }
-
     if (!verified_users.includes(editing_user)) {
       throw new Error('user not verified');
     }
