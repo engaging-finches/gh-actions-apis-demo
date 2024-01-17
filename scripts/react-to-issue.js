@@ -1,6 +1,20 @@
 import { reactToIssue } from './GraphQLmod.mjs';
+import { getIssueID } from './GraphQLmod.mjs';
+
 import process from 'process';
 
-const issueID = process.argv[2];
+const owner = process.argv[2];
+const repo = process.argv[3];
+const issueNum = parseInt(process.argv[4]); // Assuming issueNum is expected to be a number
+const reaction = process.argv[5];
 
-reactToIssue(issueID);
+async function main() {
+  try {
+    const issueID = await getIssueID(owner, repo, issueNum);
+    await reactToIssue(issueID, reaction);
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+}
+
+main();
