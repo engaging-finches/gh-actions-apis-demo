@@ -397,7 +397,7 @@ async function getUserId(assignee) {
   try {
     const response = await octokit.graphql({
       query: ` query {
-        user(login: "username") {
+        user(login: "${assignee}") {
           id
         }
       }
