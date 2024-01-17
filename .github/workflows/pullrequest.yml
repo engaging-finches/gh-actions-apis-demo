@@ -57,7 +57,8 @@ jobs:
       - name: Add CSV contents to env variable
         run: |
           CSV=$(cat pull_requests.csv)
-          echo $CSV
+          echo $CSV >> "$GITHUB_ENV"
+          echo $GITHUB_ENV
           # echo "CSV=${CSV}" >> "$GITHUB_ENV"
 
       - name: Checkout Repository
