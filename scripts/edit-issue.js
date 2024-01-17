@@ -1,6 +1,7 @@
-import { assignToIssue } from './GraphQLmod.mjs';
+import { assignToIssue, getUserId } from './GraphQLmod.mjs';
 import { changeIssueTitle } from './GraphQLmod.mjs';
 import { getIssueID } from './GraphQLmod.mjs';
+import { getUserId } from './GraphQLmod.mjs';
 
 import process from 'process';
 
@@ -33,7 +34,7 @@ async function main() {
     const issue_id = await getIssueID(owner, repo, issue_num);
 
     for (let i = 0; i < extracted.length; i++) {
-      const user_id = await getIssueID(extracted[i]);
+      const user_id = await getUserId(extracted[i]);
       assignToIssue(repo_id, issue_id, user_id);
     }
     if (extracted.length > 0) {
