@@ -432,6 +432,38 @@ async function getUserId(assignee) {
   }
 }
 
+async function isUserInRepoOrganization(owner, userID) {
+  try {
+    console.log(`with owner id: ${owner}`);
+    console.log(`with user id: ${userID}`);
+    // Fetch organization members
+    const response = await octokit.graphql({
+      query: `
+        query {
+          organization(login: "${owner}") {
+            membersWithRole(first: 100) {
+              nodes {
+                login
+              }
+            }
+          }
+        }
+      `,
+    });
+
+    // Check if the user is in the members list
+    return response.organization.membersWithRole.nodes.some(
+      (member) => member.login === userID
+    );
+  } catch (error) {
+    console.error(
+      'Error checking user in repository organization',
+      error.message
+    );
+    throw error;
+  }
+}
+
 async function assignToIssue(issueID, assignee) {
   try {
     const response = await octokit.graphql({
@@ -476,6 +508,7 @@ export { changeIssueTitle };
 export { assignToIssue };
 export { getUserId };
 export { changeIssueBody };
+export { isUserInRepoOrganization };
 /* ------------- */
 
 // Example usage
