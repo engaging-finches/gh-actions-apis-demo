@@ -59,10 +59,13 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          repository: engaging-finches/demo-pr-data
+          ref: main
 
       - name: Set Upstream Branch
         run: |
-          git fetch
+          git pull
           git branch -u origin/main
           git checkout main
 
