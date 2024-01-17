@@ -27,7 +27,7 @@ const title_without_assignees = issue_title.replace(assign_regex, '').trim();
 console.log(extracted);
 console.log(title_without_assignees);
 
-// console.log(`${owner}, ${repo}, ${issueNum}, ${reaction}`);
+console.log(`main: ${owner}, ${repo}, ${issue_num}`);
 async function main() {
   try {
     const issue_id = await getIssueID(owner, repo, issue_num);
