@@ -43,7 +43,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: pull_request_info
-          path: scripts # download to the same directory
+          path: scripts/pull_requests_info.csv
 
   update-demo-pr-data:
     runs-on: ubuntu-latest
@@ -53,7 +53,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: pull_request_info
-          path: scripts # download to the same directory
 
       - name: Checkout Repository
         uses: actions/checkout@v4
