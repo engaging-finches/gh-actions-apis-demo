@@ -1,9 +1,9 @@
 name: Issue Closed Action
 
-on:
-  issues:
-    types: [closed]
-#on: [workflow_dispatch]
+#on:
+#issues:
+# types: [closed]
+on: [workflow_dispatch]
 jobs:
   thank_you_comment:
     runs-on: ubuntu-latest

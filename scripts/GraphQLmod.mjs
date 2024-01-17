@@ -296,6 +296,7 @@ async function addIssueComment(repoID, issueID, title, body) {
 
 async function getIssueID(owner, repo, issueNum) {
   try {
+    console.log(`${owner}, + ${repo}, + ${issueNum} `);
     const response = await octokit.graphql({
       query: `
         query {
@@ -307,6 +308,7 @@ async function getIssueID(owner, repo, issueNum) {
         }
       `,
     });
+    console.log(`ID: ${response.repository.issue.id}`);
     return response.repository.issue.id;
   } catch (error) {
     console.error('Error getting issue ID', error.message);
