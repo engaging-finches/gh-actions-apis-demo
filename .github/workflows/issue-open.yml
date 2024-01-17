@@ -29,9 +29,9 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Test
-        run: echo ${{ github.events }}
+        run: echo ${{ github.event }}
       - name: Run script
         run: |
-          node scripts/edit-issue ${{ github.repository }} ${{ github.events.issue.number }} ${{ secrets.REPO_ID }} "${{ github.event.issue.title }}" ${{ github.event.issue.user.login }}
+          node scripts/edit-issue ${{ github.repository }} ${{ github.event.issue.number }} ${{ secrets.REPO_ID }} "${{ github.event.issue.title }}" ${{ github.event.issue.user.login }}
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}
