@@ -1,11 +1,12 @@
 name: Issue Open Action
 
-#on:
-#issues:
-#types: [opened, edited]
 on:
-  push:
-    branches: 'gnmeyer-patch'
+  issues:
+    types: [opened, edited]
+
+#    on:
+#push:
+# branches: 'gnmeyer-patch'
 jobs:
   edit_issue_title_and_assignees:
     runs-on: ubuntu-latest
@@ -30,6 +31,6 @@ jobs:
 
       - name: Run script
         run: |
-          node scripts/edit-issue ${{ github.repository }} 72 ${{ secrets.REPO_ID }} "THIS IS A TITLE +a{meher-liatrio}" "gnmeyer"
+          node scripts/edit-issue ${{ github.repository }} ${{ github.events.issue.number }} ${{ secrets.REPO_ID }} "${{ github.event.issue.title }}" ${{ github.event.issue.user.login }}
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}
