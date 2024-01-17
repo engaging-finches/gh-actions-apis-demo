@@ -410,22 +410,18 @@ async function getUserId(assignee) {
   }
 }
 
-async function assignToIssue(repoID, issueID, title, body, assignee) {
+async function assignToIssue(issueID, assignee) {
   try {
     const response = await octokit.graphql({
       query: `
         mutation {
           updateIssue(input: {
-            repositoryId:"${repoID}",
-            issueID: "${issueID}",
-            title: "${title}",
-            body: "${body}",
+            id: ${issueID},
             assigneeIds: ["${assignee}"],
           }) {
             issue {
-              number
               title
-              body
+              number
               assignees(first: 10) {
                 nodes {
                   login
