@@ -36,14 +36,14 @@ console.log(`main: ${owner}, ${repo}, ${issue_num}`);
 async function main() {
   try {
     if (editing_user > 10) {
-      return error;
+      throw new Error('Username too long!');
     }
 
     const editor_id = await getUserId(editing_user);
     const val = await isUserInRepoOrganization(editor_id);
 
     if (!val) {
-      return error;
+      throw new Error('user not in org');
     }
 
     const issue_id = await getIssueID(owner, repo, issue_num);
