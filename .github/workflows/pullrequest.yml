@@ -58,7 +58,7 @@ jobs:
         run: |
           {
             echo 'CSV_CONTENTS<<EOF'
-            awk -F '","' 'BEGIN {OFS=","} {gsub(/\n/, "\\n", $8); print $1, $2,$3,$4,$5,$6,$7,$8}' pull_requests.csv
+            cat pull_requests.csv
             echo EOF
           } >> "$GITHUB_ENV"
 
