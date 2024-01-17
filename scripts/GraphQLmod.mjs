@@ -393,6 +393,23 @@ async function changeIssueTitle(repoID, issueID, title) {
   }
 }
 
+async function getUserId(assignee) {
+  try {
+    const response = await octokit.graphql({
+      query: ` query {
+        user(login: "username") {
+          id
+        }
+      }
+      `,
+    });
+    return response;
+  } catch (error) {
+    console.error('error getting user ID', error.message);
+    throw error;
+  }
+}
+
 async function assignToIssue(repoID, issueID, assignee) {
   try {
     const response = await octokit.graphql({
@@ -435,6 +452,7 @@ export { getIssueID };
 export { editIssue };
 export { changeIssueTitle };
 export { assignToIssue };
+export { getUserId };
 /* ------------- */
 
 // Example usage
