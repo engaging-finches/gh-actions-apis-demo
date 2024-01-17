@@ -298,16 +298,18 @@ async function getIssueID(owner, repo, issueNum) {
   try {
     const response = await octokit.graphql({
       query: `
-        repository(owner: "${owner}", name: "${repo}") {
-          issue(number: ${issueNum}) {
-          id
+        query {
+          repository(owner: "${owner}", name: "${repo}") {
+            issue(number: ${issueNum}) {
+              id
+            }
+          }
         }
-      }
-  `,
+      `,
     });
     return response.repository.issue.id;
   } catch (error) {
-    console.error('Error reacting on issue', error.message);
+    console.error('Error getting issue ID', error.message);
     throw error;
   }
 }
