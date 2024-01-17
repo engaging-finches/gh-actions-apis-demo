@@ -1,5 +1,5 @@
 name: Display Pull Request Info
-on: [workflow_dispatch]
+on: [workflow_dispatch, pull_request]
 
 jobs:
   #checkout the repo
