@@ -4,7 +4,10 @@ import { getIssueID } from './GraphQLmod.mjs';
 import process from 'process';
 
 const owner = process.argv[2];
-const repo = process.argv[3];
+const fullRepo = process.argv[3];
+const repoParts = fullRepo.split('/');
+const repo = repoParts[1];
+
 const issueNum = parseInt(process.argv[4]); // Assuming issueNum is expected to be a number
 const reaction = process.argv[5];
 
