@@ -67,7 +67,7 @@ jobs:
           git config --global user.email "sloane.tribble@liatrio.com"
 
           # Modify the existing file or replace it with the updated content
-          # Example: echo "Hello from actions!" > README.md
+          echo "Hello from actions!" > README.md
 
           # Add, commit, and push the changes to the repository
           git add README.md
