@@ -60,6 +60,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Set Upstream Branch
+        run: |
+          git branch -u origin/main
+          git checkout main
+
       - name: Update Existing File
         run: |
           # Set up Git configuration (you may need to configure user.name and user.email)
