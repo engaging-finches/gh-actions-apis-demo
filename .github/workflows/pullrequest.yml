@@ -55,9 +55,13 @@ jobs:
           name: pull_request_info
 
       - name: Add CSV contents to env variable
-        run: |
-          CSV_CONTENTS=$(awk -F '","' 'BEGIN {OFS=","} {print $2,$3,$4,$5,$6,$7,$8}' pull_requests.csv)
-          echo "CSV_CONTENTS=${CSV_CONTENTS}" >> "$GITHUB_ENV"
+  run: |
+    {
+      echo 'CSV_CONTENTS<<EOF'
+      awk -F '","' 'BEGIN {OFS=","} {gsub(/\n/, "\\n", $8); print $2,$3,$4,$5,$6,$7,$8}' pull_requests.csv
+      echo EOF
+    } >> "$GITHUB_ENV"
+
 
       - name: Checkout Repository
         uses: actions/checkout@v4
