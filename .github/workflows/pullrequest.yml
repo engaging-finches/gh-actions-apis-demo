@@ -2,19 +2,14 @@ name: Display Pull Request Info
 on: [workflow_dispatch, pull_request]
 
 jobs:
-  #checkout the repo
-  #setup node
-  #install dependencies
-  #run module
-  #get csv output from module
-  #upload csv as artifact
-
-  #need to modify the secrets
   get_pull_request_info:
     runs-on: ubuntu-latest
     permissions:
       issues: read
     steps:
+      - name: Fetch Pull Request Refs
+        run: git fetch origin +refs/pull/${{ github.event.number }}/merge
+
       - name: Check out repo content
         uses: actions/checkout@v4
         with:
