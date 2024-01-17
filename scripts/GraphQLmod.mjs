@@ -410,7 +410,7 @@ async function getUserId(assignee) {
   }
 }
 
-async function assignToIssue(repoID, issueID, assignee) {
+async function assignToIssue(issueID, assignee) {
   try {
     const response = await octokit.graphql({
       query: `

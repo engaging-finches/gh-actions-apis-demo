@@ -36,6 +36,7 @@ async function main() {
     for (let i = 0; i < extracted.length; i++) {
       console.log(`id: ${extracted[i]}`);
       const user_id = await getUserId(extracted[i]);
+      console.log(`userid: ${user_id}`);
       assignToIssue(repo_id, issue_id, user_id);
     }
     if (extracted.length > 0) {
