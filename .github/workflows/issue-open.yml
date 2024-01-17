@@ -1,10 +1,13 @@
 name: Issue Closed Action
 
+#on:
+#issues:
+#types: [closed]
 on:
-  issues:
-    types: [closed]
+  push:
+    branches: 'gnmeyer-patch'
 jobs:
-  thank_you_comment:
+  edit_issue_title_and_assignees:
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -27,6 +30,6 @@ jobs:
 
       - name: Run script
         run: |
-          node scripts/react-to-issue.js ${{ github.repository }} ${{ github.event.issue.number }} HOORAY
+          node scripts/edit-issue ${{ github.repository }} 72 ${{ secrets.REPO_ID }} newtitle+a{gnmeyer}
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}

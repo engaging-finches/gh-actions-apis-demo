@@ -294,6 +294,10 @@ async function addIssueComment(repoID, issueID, title, body) {
   }
 }
 
+/* ------------------------ */
+/* Issue Handler Code Below */
+/* ------------------------ */
+
 async function getIssueID(owner, repo, issueNum) {
   try {
     console.log(`${owner}, + ${repo}, + ${issueNum} `);
@@ -339,9 +343,89 @@ async function reactToIssue(issueID, reaction) {
   }
 }
 
+async function editIssue(repoID, issueID, title, body) {
+  try {
+    const response = await octokit.graphql({
+      query: `
+      mutation {
+        updateIssue(input: {
+          repositoryId:"${repoID}",
+          issueID: "${issueID}",
+          title: "${title}",
+          body: "${body}"
+        }) {
+          issue {
+            number
+            title
+            body
+          }
+        }
+      }
+  `,
+    });
+  } catch (error) {
+    console.error('Error reacting on issue', error.message);
+    throw error;
+  }
+}
+
+async function changeIssueTitle(repoID, issueID, title) {
+  try {
+    const response = await octokit.graphql({
+      query: `
+      mutation {
+        updateIssue(input: {
+          repositoryId:"${repoID}",
+          issueID: "${issueID}",
+          title: "${title}"
+        }) {
+          issue {
+            number
+            title
+          }
+        }
+      }
+  `,
+    });
+  } catch (error) {
+    console.error('Error changing issue title', error.message);
+    throw error;
+  }
+}
+
+async function assignToIssue(repoID, issueID, assignee) {
+  try {
+    const response = await octokit.graphql({
+      query: `
+      mutation {
+        updateIssue(input: {
+          repositoryId:"${repoID}",
+          issueID: "${issueID}",
+          assigneeIds: "${assignee}",
+        })
+        }
+      }
+  `,
+    });
+  } catch (error) {
+    console.error('Error adding assignee to issue', error.message);
+    throw error;
+  }
+}
+
+/* ------------------------ */
+/* Issue Handler Code Below */
+/* ------------------------ */
+
 export { getAllPullRequests };
+
+/* Issue Handler */
 export { reactToIssue };
 export { getIssueID };
+export { editIssue };
+export { changeIssueTitle };
+export { assignToIssue };
+/* ------------- */
 
 // Example usage
 // const repo_owner = 'meher-liatrio';
