@@ -402,8 +402,16 @@ async function assignToIssue(repoID, issueID, assignee) {
           repositoryId:"${repoID}",
           issueID: "${issueID}",
           assigneeIds: "[${assignee}]",
-        })
-        }
+
+        }) {
+          issue {
+            number
+            title
+            assignees(first: 10) {
+              nodes {
+                login
+              }
+            }
       }
   `,
     });
