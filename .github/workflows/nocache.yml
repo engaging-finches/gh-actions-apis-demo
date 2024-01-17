@@ -1,0 +1,36 @@
+name: No cache npm
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }} #gets the current repo
+          ref: ${{ github.ref }} #gets the current branch
+          token: ${{ secrets.EF_TOKEN2 }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run script
+        run: |
+          echo "$(node scripts/get-pull-requests.js)" > scripts/pull_requests.csv
+        env: #creates environment variable for js module
+          TOKEN: ${{ secrets.EF_TOKEN2 }}
+
+      - name: Debug
+        run: |
+          cat scripts/pull_requests.csv
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pull_request_info
+          path: scripts/pull_requests.csv
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: pull_request_info
+          path: scripts/pull_requests_info.csv
