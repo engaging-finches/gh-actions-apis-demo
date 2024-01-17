@@ -37,7 +37,7 @@ async function main() {
       console.log(`id: ${extracted[i]}`);
       const user_id = await getUserId(extracted[i]);
       console.log(`userid: ${user_id}`);
-      assignToIssue(issue_id, user_id);
+      assignToIssue(repo_id, issue_id, user_id);
     }
     if (extracted.length > 0) {
       changeIssueTitle(repo_id, issue_id, title_without_assignees);
