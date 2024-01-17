@@ -4,7 +4,7 @@ import { getIssueID } from './GraphQLmod.mjs';
 import process from 'process';
 
 const owner_repo = process.argv[2];
-const split = fullRepo.split('/');
+const split = owner_repo.split('/');
 const owner = split[0];
 const repo = split[1];
 
