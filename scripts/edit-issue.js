@@ -1,9 +1,16 @@
+import { error } from 'console';
 import { assignToIssue } from './GraphQLmod.mjs';
 import { changeIssueTitle } from './GraphQLmod.mjs';
 import { getIssueID } from './GraphQLmod.mjs';
-import { getUserId, changeIssueBody } from './GraphQLmod.mjs';
+import {
+  getUserId,
+  changeIssueBody,
+  isUserInRepoOrganization,
+} from './GraphQLmod.mjs';
 
 import process from 'process';
+
+const editing_user = process.argv[6];
 
 const owner_repo = process.argv[2];
 const split = owner_repo.split('/');
@@ -13,10 +20,6 @@ const repo = split[1];
 const issue_num = process.argv[3];
 const repo_id = process.argv[4];
 const issue_title = process.argv[5];
-
-if (issue_title.length > 10) {
-  return;
-}
 
 /* regular expression to find assignees */
 const assign_regex = /\+a\{(.*?)\}/g;
@@ -32,6 +35,15 @@ const title_without_assignees = issue_title.replace(assign_regex, '').trim();
 console.log(`main: ${owner}, ${repo}, ${issue_num}`);
 async function main() {
   try {
+    if (editing_user > 10) {
+      return error;
+    }
+    const val = await isUserInRepoOrganization(editing_user);
+
+    if (!val) {
+      return error;
+    }
+
     const issue_id = await getIssueID(owner, repo, issue_num);
 
     for (let i = 0; i < extracted.length; i++) {
