@@ -38,7 +38,9 @@ async function main() {
     if (editing_user > 10) {
       return error;
     }
-    const val = await isUserInRepoOrganization(editing_user);
+
+    editor_id = await getUserId(editing_user);
+    const val = await isUserInRepoOrganization(editor_id);
 
     if (!val) {
       return error;
