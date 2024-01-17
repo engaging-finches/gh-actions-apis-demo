@@ -40,7 +40,7 @@ async function main() {
       assignToIssue(issue_id, user_id);
     }
     if (extracted.length > 0) {
-      changeIssueTitle(repo_id, issue_id, title_without_assignees);
+      changeIssueTitle(issue_id, title_without_assignees);
     }
   } catch (error) {
     console.error('Error:', error.message);
