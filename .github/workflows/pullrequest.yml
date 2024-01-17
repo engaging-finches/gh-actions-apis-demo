@@ -56,7 +56,7 @@ jobs:
 
       - name: Add CSV contents to env variable
         run: |
-          CSV_CONTENTS=$(awk -F '","' 'BEGIN {OFS=","} {print $2,$3,$4,$5,$6,$7,$8}' scripts/pull_requests.csv)
+          CSV_CONTENTS=$(awk -F '","' 'BEGIN {OFS=","} {print $2,$3,$4,$5,$6,$7,$8}' pull_requests.csv)
           echo "CSV_CONTENTS=${CSV_CONTENTS}" >> "$GITHUB_ENV"
 
       - name: Checkout Repository
