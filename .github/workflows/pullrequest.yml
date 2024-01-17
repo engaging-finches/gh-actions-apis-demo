@@ -62,6 +62,7 @@ jobs:
 
       - name: Set Upstream Branch
         run: |
+          git fetch
           git branch -u origin/main
           git checkout main
 
