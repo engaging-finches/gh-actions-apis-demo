@@ -440,7 +440,7 @@ async function isUserInRepoOrganization(owner, userID) {
       query: `
         query($orgLogin: String!) {
           organization(login: $orgLogin) {
-            membersWithRole(first: 100) {  // Adjust 'first' as needed
+            membersWithRole(first: 100) {
               nodes {
                 login
               }
