@@ -58,7 +58,7 @@ jobs:
         run: |
           {
             echo 'CSV_CONTENTS<<EOF'
-            awk -F '","' 'BEGIN {OFS=","} {gsub(/\n/, "\\n", $8); print $2,$3,$4,$5,$6,$7,$8}' pull_requests.csv
+            awk -F '","' 'BEGIN {OFS=","} {gsub(/\n/, "\\n", $8); print $1, $2,$3,$4,$5,$6,$7,$8}' pull_requests.csv
             echo EOF
           } >> "$GITHUB_ENV"
 
@@ -81,9 +81,9 @@ jobs:
           git config --global user.email "${{ secrets.USER_EMAIL }}"
 
           # Modify the existing file or replace it with the updated content
-          printf '%s\n' "$CSV_CONTENTS" > README.md
+          printf '%s\n' "$CSV_CONTENTS" > test.csv
 
           # Add, commit, and push the changes to the repository
-          git add README.md
+          git add test.csv
           git commit -m "Update README"
           git push https://engaging-finches@github.com/engaging-finches/demo-pr-data.git main
