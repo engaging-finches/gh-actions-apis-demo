@@ -39,7 +39,7 @@ const extracted = matches
 
 const title_without_assignees = issue_title.replace(assign_regex, '').trim();
 
-console.log(`main: ${owner}, ${repo}, ${issue_num}, ${editing_user}`);
+console.log(`main: ${editing_user}`);
 async function main() {
   try {
     // if (editing_user > 39) {
