@@ -434,6 +434,7 @@ async function getUserId(assignee) {
 
 async function isUserInRepoOrganization(userID, repoID) {
   try {
+    console.log(`with user id: ${userID}`);
     // Fetch repository information including the owner
     const repoResponse = await octokit.graphql({
       query: `
