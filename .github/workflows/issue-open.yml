@@ -34,5 +34,5 @@ jobs:
         # node scripts/edit-issue ${{ github.repository }} ${{ github.events.issue.number }} ${{ secrets.REPO_ID }} "${{ github.event.issue.title }}" ${{ github.event.issue.user.login }}
         run: |
           node scripts/edit-issue ${{ github.repository }} 72 ${{ secrets.REPO_ID }} "TITLE" gnmeyer
-          env:
+        env:
           TOKEN: ${{ secrets.EF_TOKEN }}
