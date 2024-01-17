@@ -43,7 +43,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: pull_request_info
-          path: scripts/pull_requests_info.csv
+          path: scripts # download to the same directory
 
   update-demo-pr-data:
     runs-on: ubuntu-latest
@@ -53,6 +53,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: pull_request_info
+          path: scripts # download to the same directory
 
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -73,7 +74,7 @@ jobs:
           git config --global user.email "${{ secrets.USER_EMAIL }}"
 
           # Modify the existing file or replace it with the updated content
-          cat scripts/pull_requests_info.csv > README.md
+          cat scripts/pull_requests.csv > README.md
 
           # Add, commit, and push the changes to the repository
           git add README.md
