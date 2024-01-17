@@ -401,7 +401,7 @@ async function assignToIssue(repoID, issueID, assignees) {
         updateIssue(input: {
           repositoryId:"${repoID}",
           issueID: "${issueID}",
-          assigneeIds: ${assignees},
+          assigneeIds: '${assignees}',
         })
         }
       }
