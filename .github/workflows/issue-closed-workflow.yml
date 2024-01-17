@@ -32,6 +32,6 @@ jobs:
 
       - name: Run script
         run: |
-          node scripts/react-to-issue.js ${{ github.repository_owner }} ${{ github.repository }} ${{ github.event.issue.number }} HOORAY
+          node scripts/react-to-issue.js ${{ github.repository }} ${{ github.event.issue.number }} HOORAY
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}
