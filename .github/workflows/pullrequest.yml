@@ -54,12 +54,6 @@ jobs:
         with:
           name: pull_request_info
 
-      - name: Read CSV contents
-        id: read-csv
-        run: |
-          CSV_CONTENTS=$(cat ${{ github.workspace }}/scripts/pull_requests.csv)
-          echo "::set-output name=csv_contents::${CSV_CONTENTS}"
-
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
@@ -80,9 +74,6 @@ jobs:
 
           # Modify the existing file or replace it with the updated content
           echo "$CSV_CONTENTS" > README.md
-
-          # Print the remote URL
-          git remote -v
 
           # Add, commit, and push the changes to the repository
           git add README.md
