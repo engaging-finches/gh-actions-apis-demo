@@ -432,7 +432,7 @@ async function getUserId(assignee) {
   }
 }
 
-async function isUserInRepoOrganization(owner, userID, repoID) {
+async function isUserInRepoOrganization(owner, userID) {
   try {
     console.log(`with user id: ${userID}`);
     // Fetch organization members

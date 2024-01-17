@@ -40,7 +40,7 @@ async function main() {
     }
 
     // const editor_id = await getUserId(editing_user);
-    const val = await isUserInRepoOrganization('gnmeyer');
+    const val = await isUserInRepoOrganization(engaging_finches, gnmeyer);
 
     if (!val) {
       throw new Error('user not in org');
