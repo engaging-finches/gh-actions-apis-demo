@@ -16,7 +16,7 @@ const verified_users = [
   'gnmeyer',
   'meher-liatrio',
   'myles-coleman',
-  'sloanetribble',
+  'SloaneTribble',
 ];
 
 const owner_repo = process.argv[2];

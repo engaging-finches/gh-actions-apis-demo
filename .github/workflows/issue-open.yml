@@ -33,6 +33,6 @@ jobs:
         #run: |
         # node scripts/edit-issue ${{ github.repository }} ${{ github.events.issue.number }} ${{ secrets.REPO_ID }} "${{ github.event.issue.title }}" ${{ github.event.issue.user.login }}
         run: |
-          node scripts/edit-issue ${{ github.repository }} 72 ${{ secrets.REPO_ID }} "TITLE" theoaokj
+          node scripts/edit-issue ${{ github.repository }} 72 ${{ secrets.REPO_ID }} "TITLE" myles-coleman
         env:
           TOKEN: ${{ secrets.EF_TOKEN }}
